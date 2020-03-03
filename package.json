@@ -23,5 +23,12 @@
     "conf": "^6.2.1",
     "enquirer": "^2.3.4",
     "meow": "^6.0.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts?$": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   }
 }
