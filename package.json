@@ -1,7 +1,7 @@
 {
-  "name": "cd-project",
+  "name": "w-project",
   "version": "0.0.0",
-  "description": "Config your projects and cd into them",
+  "description": "List all the projects in the workspaces and choose the one to open in editor",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

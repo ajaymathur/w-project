@@ -22,7 +22,6 @@ export default async function open({
       return [
         { message: `${workspacePath.split(path.sep).pop()}:`, role: 'separator' },
         ...projects.map(project => ({ value: path.resolve(workspacePath, project), message: chalk`{bold.green ${project}} ➡ ${path.resolve(workspacePath, project)}` }))
-
       ];
     })])).flat();
 
