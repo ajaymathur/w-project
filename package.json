@@ -1,6 +1,6 @@
 {
   "name": "w-project",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "List all the projects in the workspaces and choose the one to open in editor",
   "bin": "dist/index.js",
   "scripts": {
@@ -29,6 +29,13 @@
       "^.+\\.ts?$": "ts-jest"
     },
     "testEnvironment": "node",
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }
