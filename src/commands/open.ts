@@ -2,6 +2,10 @@ import Conf from 'conf';
 import { prompt } from 'enquirer';
 import path from 'path';
 import * as fs from '../functions/fs';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+
+const execPromise = promisify(exec);
 
 interface Open {
   conf: Conf
@@ -14,7 +18,7 @@ export default async function open({
   console.log({ workspaces })
   const workspaceStruct: string[] = (await Promise.all([...workspaces.map(async workspacePath => {
     const projects: string[] = await fs.readDirectory(workspacePath);
-    return projects.map(project => `${project} - ${path.resolve(workspacePath, project)}`)
+    return projects.map(project => `${project}: ${path.resolve(workspacePath, project)}`)
   })])).flat();
 
   console.log({workspaceStruct});
@@ -28,14 +32,14 @@ export default async function open({
   //   .then(answer => console.log('Username:', answer))
   //   .catch(console.error);
 
-  const t = await prompt({
+  const t: { projectToOpen: string } = await prompt({
     type: 'autocomplete',
     name: 'projectToOpen',
-    limit: 10,
     message: 'Pick the project you are going to work on:',
     choices: [...workspaceStruct]
   });
 
-//  const t = await prompt.run();
-  console.log({ t });
+  console.log(t.projectToOpen.split('-')[1].trim())
+
+  await execPromise(`code ${t.projectToOpen.split(':')[1].trim()}`)
 }
