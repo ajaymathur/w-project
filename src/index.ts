@@ -5,6 +5,7 @@ import Conf from 'conf';
 
 import add from './commands/add';
 import open from './commands/open';
+import setConfig from './commands/set';
 
 async function main() {
   const { input, flags } = meow(`
@@ -43,6 +44,13 @@ async function main() {
     case 'open':
       await open({
         conf
+      });
+      break;
+    case 'set':
+      await setConfig({
+        conf,
+        property: input[1],
+        value: input[2]
       });
       break;
     default:

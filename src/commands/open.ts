@@ -37,7 +37,9 @@ export default async function open({
       choices: [...workspaceStruct]
     });
 
-    await execPromise(`code ${selectedOption.projectToOpen}`)
+    const editor = conf.get('editor') || 'code';
+
+    await execPromise(`${editor} ${selectedOption.projectToOpen}`)
   } catch (err) {
     console.log(err);
     process.exit(1);
