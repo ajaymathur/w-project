@@ -28,4 +28,14 @@ $ w-project
 $ w-project set editor <code|vim|atom>
 ```
 
+### Commands
+
+**add**: Add the projects in a new workspace to the registry of projects. Usage `w-project add .` to add current directory.
+
+**open**: Show options of the project in the workspaces so that we can choose one open editor for that project. If no commands is passed ***open*** is executed.
+
+**set**: Usage `w-project set <property> <value>` - Set a config for w-project. Currently supported properties are:
+
+- editor: code|atom|vi|vim
+
 Build with ❤️ and ⚖️.
