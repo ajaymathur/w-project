@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node src/index.tsx"
+    "dev": "ts-node src/index.ts"
   },
   "author": "Ajay Narain Mathur <ajaynarainmathur@gmail.com>",
   "license": "MIT",
@@ -15,7 +15,11 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "conf": "^6.2.1",
+    "enquirer": "^2.3.4",
     "globby": "^11.0.0",
-    "inquirer": "^7.0.5"
+    "inquirer": "^7.0.5",
+    "meow": "^6.0.1",
+    "mkdirp": "^1.0.3"
   }
 }
