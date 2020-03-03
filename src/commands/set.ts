@@ -15,7 +15,7 @@ export default function setConfig({
     switch (property) {
       case 'editor':
         if (['code', 'atom', 'vim', 'vi'].indexOf(value) === -1)
-          throw new Error(`Unknow editor ${value}`);
+          throw new Error(`Unknown editor ${value}`);
         break;
       default:
         throw new Error(`Unknown property ${property}`);
