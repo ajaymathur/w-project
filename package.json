@@ -15,11 +15,9 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "chalk": "^3.0.0",
     "conf": "^6.2.1",
     "enquirer": "^2.3.4",
-    "globby": "^11.0.0",
-    "inquirer": "^7.0.5",
-    "meow": "^6.0.1",
-    "mkdirp": "^1.0.3"
+    "meow": "^6.0.1"
   }
 }
