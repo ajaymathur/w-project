@@ -8,7 +8,7 @@ import open from './commands/open';
 import setConfig from './commands/set';
 
 async function main() {
-  const { input, flags } = meow(`
+  const { input } = meow(`
     Usage:
     
       $ w-project [command]
@@ -17,6 +17,7 @@ async function main() {
 
     add       Add a workspace to the config
     open      Show options of the projects
+    set       Set config for the tool
 
     Example:
 
@@ -25,13 +26,16 @@ async function main() {
 
     Choose a project to work on:
     $ w-project open
+
+    Change editor for the tool:
+    $ w-project set editor code
   `);
 
   const conf = new Conf({
     projectName: 'w-project'
   });
 
-  const command = input[0] || '';
+  const [command = 'open', ...args] = input;
 
   switch(command) {
     case 'add':
@@ -40,17 +44,17 @@ async function main() {
         workspacePath: input[1],
       })
       break;
-    case '':
     case 'open':
       await open({
         conf
       });
       break;
     case 'set':
+      const [property, value] = args;
       await setConfig({
         conf,
-        property: input[1],
-        value: input[2]
+        property,
+        value
       });
       break;
     default:
