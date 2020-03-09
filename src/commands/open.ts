@@ -5,6 +5,7 @@ import { promisify } from 'util';
 import { prompt } from 'enquirer';
 import { exec } from 'child_process';
 import * as fs from '../functions/fs';
+import 'array-flat-polyfill';
 
 const execPromise = promisify(exec);
 
