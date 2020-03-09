@@ -1,6 +1,6 @@
 {
   "name": "w-project",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "List all the projects in the workspaces and choose the one to open in editor",
   "bin": "dist/index.js",
   "scripts": {
