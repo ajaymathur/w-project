@@ -2,10 +2,13 @@
 
 import meow from 'meow';
 import Conf from 'conf';
+import chalk from 'chalk';
 
 import add from './commands/add';
 import open from './commands/open';
 import setConfig from './commands/set';
+import * as KnownErrors from './functions/errors';
+import { report_issue_url } from './functions/constants';
 
 async function main() {
   const { input } = meow(`
@@ -62,4 +65,15 @@ async function main() {
   }
 }
 
-main();
+main().catch(err => {
+  const knownErrorsArr: Array<string> = Object.keys(KnownErrors)
+  const isErrorKnown = knownErrorsArr.some(knownErrorName => err instanceof KnownErrors[knownErrorName]);
+
+  if (isErrorKnown) {
+    console.log(err);
+    return;
+  }
+
+  console.log(chalk`{red An unexpected error occured, please raise a issue at} {red.underline ${report_issue_url}} {red and copy the error stack below.}`)
+  throw err;
+});

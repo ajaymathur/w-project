@@ -1,5 +1,8 @@
 import path from 'path';
 import Conf from 'conf';
+import { isDirectory } from '../functions/fs';
+import { PathNotDirectory } from '../functions/errors';
+import { workspace_not_a_directory } from '../functions/messages';
 
 interface Add {
   conf: Conf
@@ -10,13 +13,12 @@ export default async function add({
   conf,
   workspacePath
 }: Add) {
-  try {
-    const resolvedWorkspacePath = path.resolve(workspacePath);
-    const existingPaths: string[] = conf.get('workspaces') || [];
-    const newPaths = [resolvedWorkspacePath, ...existingPaths];
-    conf.set('workspaces', newPaths);
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
-  }
+  const resolvedWorkspacePath = path.resolve(workspacePath);
+  const isPathForDirecotry = await isDirectory(resolvedWorkspacePath);
+
+  if (!isPathForDirecotry) throw new PathNotDirectory(workspace_not_a_directory(resolvedWorkspacePath));
+
+  const existingPaths: string[] = conf.get('workspaces') || [];
+  const newPaths = [resolvedWorkspacePath, ...existingPaths];
+  conf.set('workspaces', newPaths);
 }
