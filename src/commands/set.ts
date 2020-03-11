@@ -1,4 +1,6 @@
 import Conf from 'conf';
+import { UnknownEditorError, UnsupportedPropertyError } from '../functions/errors';
+import { unknown_editor, unknown_property } from '../functions/messages';
 
 interface Set {
   conf: Conf,
@@ -11,18 +13,14 @@ export default function setConfig({
   property,
   value
 }: Set) {
-  try {
-    switch (property) {
-      case 'editor':
-        if (['code', 'atom', 'vim', 'vi'].indexOf(value) === -1)
-          throw new Error(`Unknown editor ${value}`);
-        break;
-      default:
-        throw new Error(`Unknown property ${property}`);
-    }
-    conf.set(property, value)
-  } catch (err) {
-    console.error(err);
-    process.exit(1)
+  const supportedEditors = ['code', 'atom', 'vim', 'vi'];
+  switch (property) {
+    case 'editor':
+      if (supportedEditors.indexOf(value) === -1)
+        throw new UnknownEditorError(unknown_editor(value, supportedEditors.join(', ')));
+      break;
+    default:
+      throw new UnsupportedPropertyError(unknown_property(property));
   }
+  conf.set(property, value)
 }

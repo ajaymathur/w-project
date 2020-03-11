@@ -19,22 +19,22 @@ describe('setConfig', () => {
   afterEach(() => {
     console = originalConsole;
   })
-  it('prints error message on console if unknown property is passed', () => {
-    setConfig({
+  it('should throw if unknown property is passed', () => {
+    expect(() => setConfig({
       conf: confMock,
-      property: 'unkown',
+      property: 'unknown',
       value: 'dummyValue'
-    });
-    expect(console.error).toHaveBeenCalledWith(new Error('Unknown property unkown'))
+    })).toThrow(/unknown config is not supported./);
   });
-  it('prints error message on console if invalid value is passed for valid property', () => {
-    setConfig({
+
+  it('should throw if invalid value is passed for valid property', () => {
+    expect(() => setConfig({
       conf: confMock,
       property: 'editor',
       value: 'dummyValue'
-    });
-    expect(console.error).toHaveBeenCalledWith(new Error('Unknown editor dummyValue'))
+    })).toThrow(/dummyValue is not supported/)
   });
+
   it('calls conf set with valid value', () => {
     setConfig({
       conf: confMock,
