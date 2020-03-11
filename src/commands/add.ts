@@ -14,9 +14,9 @@ export default async function add({
   workspacePath
 }: Add) {
   const resolvedWorkspacePath = path.resolve(workspacePath);
-  const isPathForDirecotry = await isDirectory(resolvedWorkspacePath);
+  const isPathForDirectory = await isDirectory(resolvedWorkspacePath);
 
-  if (!isPathForDirecotry) throw new PathNotDirectory(workspace_not_a_directory(resolvedWorkspacePath));
+  if (!isPathForDirectory) throw new PathNotDirectory(workspace_not_a_directory(resolvedWorkspacePath));
 
   const existingPaths: string[] = conf.get('workspaces') || [];
   const newPaths = [resolvedWorkspacePath, ...existingPaths];
