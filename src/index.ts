@@ -7,11 +7,12 @@ import chalk from 'chalk';
 import add from './commands/add';
 import open from './commands/open';
 import setConfig from './commands/set';
+import configCommand from './commands/config';
 import * as KnownErrors from './functions/errors';
 import { report_issue_url } from './functions/constants';
 
 async function main() {
-  const { input } = meow(`
+  const { input, flags } = meow(`
     Usage:
     
       $ w-project [command]
@@ -46,6 +47,13 @@ async function main() {
         conf,
         workspacePath: input[1],
       })
+      break;
+    case 'config':
+      await configCommand({
+        conf,
+        args,
+        flags
+      });
       break;
     case 'open':
       await open({

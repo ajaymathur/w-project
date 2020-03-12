@@ -24,6 +24,15 @@ $ w-project add <path-to-workspace>
 # Open a project
 $ w-project
 
+# View list of the config
+$ w-project config list
+
+# View list in interactive mode
+$ w-project config list -i
+
+# Set the editor to use to open the project
+$ w-project config set editor code|vim|atom
+
 # Setup the editor to use
 $ w-project set editor <code|vim|atom>
 ```
@@ -31,6 +40,8 @@ $ w-project set editor <code|vim|atom>
 ### Commands
 
 **add**: Add the projects in a new workspace to the registry of projects. Usage `w-project add .` to add current directory.
+
+**config**: View or update the config. Usage `w-project config <sub-command> <value>`. Supported sub-commands are - `list` and `set`.
 
 **open**: Show options of the project in the workspaces so that we can choose one open editor for that project. If no commands is passed ***open*** is executed.
 
